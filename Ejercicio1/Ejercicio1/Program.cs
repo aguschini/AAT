@@ -1,0 +1,124 @@
+﻿using System;
+
+namespace Ejercicio1
+{
+    public interface Figura
+    {
+        float calcularArea();
+        float calcularPerimetro();
+    }
+    public class Rectangulo : Figura
+
+    {
+        private float bbase;
+        private float altura;
+
+        public Rectangulo(float b, float a)
+        {
+            bbase = b;
+            altura = a;
+        }
+
+        public float calcularArea()
+        {
+            return bbase * altura;
+        }
+
+        public float calcularPerimetro()
+        {
+            return (bbase + altura) * 2;
+        }
+    }
+
+    public class Cuadrado : Figura
+
+    {
+        private float lado;
+
+        public Cuadrado(float l)
+        {
+            lado = l;
+        }
+
+        public float calcularArea()
+        {
+            return lado * lado;
+        }
+
+        public float calcularPerimetro()
+        {
+            return lado * 4;
+        }
+    }
+
+    public class Triangulo : Figura
+
+    {
+        private float bbase;
+        private float altura;
+        private float lado;
+        private float lado2;
+        public Triangulo(float b, float a, float c, float d)
+        {
+            bbase = b;
+            altura = a;
+            lado = c;
+            lado2 = d;
+        }
+
+        public float calcularArea()
+        {
+            return (bbase * altura) / 2;
+        }
+
+        public float calcularPerimetro()
+        {
+            return bbase + lado + lado2;
+        }
+    }
+    public class Circulo : Figura
+
+    {
+        private float radio;
+        private static readonly float PI = 3.1415926535f;
+
+        public Circulo(float r)
+        {
+            radio = r;
+        }
+
+        public float calcularArea()
+        {
+            return PI * radio * radio;
+        }
+
+        public float calcularPerimetro()
+        {
+            return 2 * PI * radio;
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+            // Crear un arreglo de figuras (puede contener Rectángulos y Círculos)
+            Figura[] figuras = new Figura[]
+            {
+                new Rectangulo(4, 6),    // Rectángulo de 4x6
+                new Circulo(5),          // Círculo de radio 5
+                new Rectangulo(3, 7),   // Rectángulo de 3x7
+                new Circulo(2.5f)        // Círculo de radio 2.5
+            };
+
+            // Recorrer el arreglo y mostrar resultados
+            for (int i = 0; i < figuras.Length; i++)
+            {
+                Console.WriteLine($"\nFigura {i + 1}:");
+                Console.WriteLine($"Tipo: {figuras[i].GetType().Name}");
+                Console.WriteLine($"Área: {figuras[i].calcularArea():F2}");
+                Console.WriteLine($"Perímetro: {figuras[i].calcularPerimetro():F2}");
+            }
+        }
+    }
+}
+
